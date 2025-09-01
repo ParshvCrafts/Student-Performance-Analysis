@@ -16,6 +16,13 @@ app = application
 ## Route for a home page
 @app.route('/')
 
+def hello():
+    return "Hello World! Flask app running on Render!"
+
+@app.route('/health')
+def health():
+    return "OK"
+
 def index():
     return render_template('index.html')
     
@@ -46,4 +53,7 @@ def predict():
 
 if __name__ == "__main__":
     logging.info("Starting the Flask server for prediction")
-    app.run(host='0.0.0.0')
+    # Get port from environment variable (Render provides this)
+    port = int(os.environ.get('PORT', 5000))
+    # MUST run on 0.0.0.0 for external access on Render
+    application.run(host='0.0.0.0', port=port, debug=False)
