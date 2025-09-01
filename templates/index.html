@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance Predictor - AI-Powered Academic Analytics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .container {
+            padding: 2rem 0;
+        }
+        
+        .main-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 3rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            text-align: center;
+        }
+        
+        .hero-icon {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 3rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(102, 126, 234, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.2);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-description {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .cta-section {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 15px;
+        }
+        
+        .btn-start {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 50px;
+            padding: 1rem 2.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            margin: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .btn-start:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+        
+        .stats-section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 15px;
+        }
+        
+        .stat-item {
+            margin: 1rem 0;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .tech-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            margin: 0.25rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .section-divider {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+            margin: 2rem 0;
+        }
+        
+        /* Developer Footer Section Styles */
+        .developer-section {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+        
+        .developer-header {
+            color: #333;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .developer-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .developer-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        .developer-title {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid transparent;
+            border-radius: 25px;
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            min-width: 140px;
+            justify-content: center;
+        }
+        
+        .social-link.linkedin {
+            border-color: rgba(0, 119, 181, 0.2);
+        }
+        
+        .social-link.linkedin:hover {
+            background: #0077b5;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 119, 181, 0.3);
+            text-decoration: none;
+        }
+        
+        .social-link.github {
+            border-color: rgba(51, 51, 51, 0.2);
+        }
+        
+        .social-link.github:hover {
+            background: #333;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(51, 51, 51, 0.3);
+            text-decoration: none;
+        }
+        
+        .social-icon {
+            font-size: 1.1rem;
+        }
+        
+        .project-note {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 10px;
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.4;
+        }
+        
+        @media (max-width: 768px) {
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .social-link {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-card">
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <div class="hero-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h1 class="hero-title">Student Performance Predictor</h1>
+                <p class="hero-subtitle">
+                    Harness the power of machine learning to predict academic performance and unlock student potential through data-driven insights.
+                </p>
+            </div>
+            
+            <hr class="section-divider">
+            
+            <!-- Features Section -->
+            <div class="features-section">
+                <h3 class="mb-4" style="color: #333; font-weight: 600;">
+                    <i class="fas fa-star me-2" style="color: #667eea;"></i>Key Features
+                </h3>
+                
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h5 class="feature-title">Accurate Predictions</h5>
+                            <p class="feature-description">
+                                Advanced ML algorithms analyze multiple factors to predict math scores with high precision based on student demographics and academic history.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h5 class="feature-title">Personalized Analysis</h5>
+                            <p class="feature-description">
+                                Consider individual factors like parental education, socioeconomic status, and test preparation to provide tailored predictions.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h5 class="feature-title">Actionable Insights</h5>
+                            <p class="feature-description">
+                                Get data-driven recommendations to improve academic performance and identify areas that need focused attention.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="section-divider">
+            
+            <!-- Statistics Section -->
+            <div class="stats-section">
+                <h4 class="mb-3" style="color: #333; font-weight: 600;">
+                    <i class="fas fa-database me-2" style="color: #667eea;"></i>Model Performance
+                </h4>
+                
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="stat-item">
+                            <div class="stat-number">88%</div>
+                            <div class="stat-label">Prediction Accuracy</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-item">
+                            <div class="stat-number">1K+</div>
+                            <div class="stat-label">Training Samples</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-item">
+                            <div class="stat-number">7</div>
+                            <div class="stat-label">Key Factors</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-item">
+                            <div class="stat-number">0.1s</div>
+                            <div class="stat-label">Prediction Speed</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Technology Stack -->
+            <div class="tech-section mb-4">
+                <h5 class="mb-3" style="color: #333; font-weight: 600;">Powered By</h5>
+                <div class="tech-stack">
+                    <span class="tech-badge"><i class="fab fa-python me-1"></i>Python</span>
+                    <span class="tech-badge"><i class="fas fa-brain me-1"></i>Scikit-learn</span>
+                    <span class="tech-badge"><i class="fas fa-table me-1"></i>Pandas</span>
+                    <span class="tech-badge"><i class="fas fa-flask me-1"></i>Flask</span>
+                    <span class="tech-badge"><i class="fas fa-chart-bar me-1"></i>NumPy</span>
+                </div>
+            </div>
+            
+            <!-- Call to Action -->
+            <div class="cta-section">
+                <h3 class="mb-3" style="color: #333; font-weight: 600;">Ready to Predict Academic Performance?</h3>
+                <p class="mb-4" style="color: #666;">
+                    Enter student information and get instant math score predictions powered by machine learning algorithms.
+                </p>
+                
+                <a href="http://127.0.0.1:5000/predictdata" class="btn-start">
+                    <i class="fas fa-rocket me-2"></i>Start Prediction
+                </a>
+                
+                <div class="mt-3">
+                    <small class="text-muted">
+                        <i class="fas fa-shield-alt me-1"></i>
+                        Secure • Fast • Accurate • Free to Use
+                    </small>
+                </div>
+            </div>
+            
+            <!-- Additional Info -->
+            <div class="mt-4 pt-3" style="border-top: 1px solid rgba(102, 126, 234, 0.2);">
+                <p class="mb-1" style="color: #666; font-size: 0.9rem;">
+                    <i class="fas fa-info-circle me-1"></i>
+                    This model considers factors like gender, ethnicity, parental education, lunch type, test preparation, and existing reading/writing scores.
+                </p>
+                <p class="mb-0" style="color: #666; font-size: 0.8rem;">
+                    Built with modern machine learning techniques for educational analytics and student performance optimization.
+                </p>
+            </div>
+            
+            <hr class="section-divider">
+            
+            <!-- Developer Section -->
+            <div class="developer-section">
+                <div class="developer-header">
+                    <i class="fas fa-code"></i>
+                    <span>Developed By</span>
+                </div>
+                
+                <div class="developer-info">
+                    <div class="developer-name">Parshv Patel</div>
+                    <div class="developer-title">
+                        <i class="fas fa-graduation-cap me-1"></i>
+                        Data Science & Machine Learning Engineer
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/parshv-patel-65a90326b/" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="social-link linkedin">
+                            <i class="fab fa-linkedin social-icon"></i>
+                            <span>LinkedIn Profile</span>
+                        </a>
+                        
+                        <a href="https://github.com/ParshvCrafts/Student-Performance-Analysis/blob/main/src/notebook/EDA%20Student%20Performance.ipynb" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="social-link github">
+                            <i class="fab fa-github social-icon"></i>
+                            <span>View Analysis</span>
+                        </a>
+                    </div>
+                    
+                    <div class="project-note">
+                        <i class="fas fa-lightbulb me-1" style="color: #667eea;"></i>
+                        This project demonstrates end-to-end machine learning implementation with comprehensive EDA, 
+                        feature engineering, model training, and web deployment using Flask.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Add smooth scrolling and interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate feature cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe feature cards and developer section
+            document.querySelectorAll('.feature-card, .developer-section').forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(element);
+            });
+            
+            // Add click effects to buttons
+            document.querySelector('.btn-start').addEventListener('click', function(e) {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+            
+            // Add click effects to social links
+            document.querySelectorAll('.social-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
