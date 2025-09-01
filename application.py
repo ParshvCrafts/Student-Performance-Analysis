@@ -16,18 +16,15 @@ app = application
 ## Route for a home page
 @app.route('/')
 
-def hello():
-    return "Hello World! Flask app running on Render!"
-
-@app.route('/health')
-def health():
-    return "OK"
-
 def index():
     return render_template('index.html')
     
 def home():
     return render_template('home.html')
+
+@app.route('/health')
+def health():
+    return "OK"
 
 @app.route('/predictdata', methods=['Get','POST'])
 
