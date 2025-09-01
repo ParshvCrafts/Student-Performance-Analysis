@@ -1,9 +1,10 @@
-pandas
-numpy
-seaborn
-matplotlib
-scikit-learn
-catboost
-xgboost
-dill
-flask
+flask==2.3.3
+pandas==2.0.3
+numpy==1.24.3
+dill==0.3.7
+# Remove heavy packages temporarily
+# seaborn==0.13.2
+# matplotlib==3.10.6
+# scikit-learn==1.7.1
+# catboost==1.2.8
+# xgboost==3.0.4
