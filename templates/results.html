@@ -351,12 +351,12 @@
             
             <!-- Action Buttons -->
             <div class="action-buttons">
-                <a href="http://127.0.0.1:5000/predictdata" class="btn-action">
+                <a href="{{ url_for('predict') }}" class="btn-action">
                     <i class="fas fa-redo me-2"></i>
                     New Prediction
                 </a>
                 
-                <a href="http://127.0.0.1:5000" class="btn-action btn-secondary">
+                <a href="{{ url_for('index') }}" class="btn-action btn-secondary">
                     <i class="fas fa-home me-2"></i>
                     Back to Home
                 </a>
