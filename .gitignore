@@ -211,3 +211,6 @@ __marimo__/
 # Uncomment the following line if you want to exclude pickle files from version control
 # artifacts/*.pkl
 # artifacts/*.csv
+
+# Claude Code local settings
+.claude/*.local.json

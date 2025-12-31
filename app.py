@@ -27,7 +27,6 @@ def health():
     """Health check endpoint for monitoring"""
     try:
         # Verify critical files exist
-        import os
         model_exists = os.path.exists('artifacts/model.pkl')
         preprocessor_exists = os.path.exists('artifacts/preprocessor.pkl')
 

@@ -58,12 +58,22 @@ def load_object(file_path):
         with open(file_path, "rb") as file_obj:
             return dill.load(file_obj)
     except AttributeError as ae:
-        # Handle scikit-learn version mismatch issues
-        logging.error(f"AttributeError when loading {file_path}: {str(ae)}")
-        logging.error("This is likely due to scikit-learn version incompatibility.")
-        logging.error("The pickled model was created with a different sklearn version.")
-        logging.error("Please retrain the model with the current environment.")
-        raise CustomException(ae, sys)
+        error_msg = str(ae)
+        # Check if this is a sklearn version mismatch issue
+        sklearn_indicators = ['sklearn', 'SimpleImputer', 'StandardScaler',
+                              'OneHotEncoder', '_fill_dtype', 'ColumnTransformer']
+        is_sklearn_issue = any(indicator in error_msg for indicator in sklearn_indicators)
+
+        if is_sklearn_issue:
+            logging.error(f"AttributeError when loading {file_path}: {error_msg}")
+            logging.error("This is due to scikit-learn version incompatibility.")
+            logging.error("The pickled model was created with a different sklearn version.")
+            logging.error("Please retrain the model with the current environment.")
+            raise CustomException(ae, sys) from ae
+        else:
+            # Re-raise non-sklearn AttributeErrors with chaining
+            logging.error(f"AttributeError when loading {file_path}: {error_msg}")
+            raise CustomException(ae, sys) from ae
     except Exception as e:
         logging.error(f"Error loading object from {file_path}: {str(e)}")
-        raise CustomException(e, sys)
+        raise CustomException(e, sys) from e
