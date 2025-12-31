@@ -1,7 +1,7 @@
 """
 Model Retraining Script
-This script retrains all models and regenerates pickle files with the current sklearn version
-Run this script to fix version compatibility issues
+Run this script locally to regenerate pickle files when needed.
+After running, commit the new artifacts to git.
 """
 import os
 import sys
@@ -10,6 +10,10 @@ from src.components.data_transformation import DataTransformation
 from src.components.model_trainer import ModelTrainer
 from src.logger import logging
 from src.exception import CustomException
+
+# Show sklearn version for reference
+import sklearn
+print(f"Training with scikit-learn version: {sklearn.__version__}")
 
 
 def retrain_pipeline():

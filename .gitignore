@@ -207,10 +207,8 @@ marimo/_lsp/
 __marimo__/
 
 # Machine Learning artifacts
-# Note: These are regenerated during deployment via build.sh
-# Uncomment the following line if you want to exclude pickle files from version control
-# artifacts/*.pkl
-# artifacts/*.csv
+# Keep these tracked in git - they deploy with the code
+# sklearn version is pinned in requirements.txt to match artifact version
 
 # Claude Code local settings
 .claude/*.local.json

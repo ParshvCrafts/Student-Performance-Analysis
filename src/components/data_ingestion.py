@@ -20,7 +20,7 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         logging.info("Data Ingestion method started")
         try:
-            df = pd.read_csv(r"src\data\student_performance.csv")
+            df = pd.read_csv(os.path.join('src', 'data', 'student_performance.csv'))
             logging.info("Dataset read as pandas dataframe")
 
             os.makedirs(os.path.dirname(self.raw_data_path), exist_ok=True)

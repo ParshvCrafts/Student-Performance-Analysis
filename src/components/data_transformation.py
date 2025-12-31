@@ -25,7 +25,7 @@ class DataTransformation:
         """
         try:
             logging.info("Data Transformation initiated")
-            df = pd.read_csv(r'src\data\student_performance.csv')
+            df = pd.read_csv(os.path.join('src', 'data', 'student_performance.csv'))
             X = df.drop(columns=['math_score'], axis=1)
             y = df['math_score']
             numeric_features = list(X.select_dtypes(exclude="object").columns)
