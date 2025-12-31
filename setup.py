@@ -15,6 +15,7 @@ def get_requirements(file_path:str)->List[str]:
         List[str]: _description_
     """
     
+    
     requirements = []
     with open(file_path) as file_obj:
         requirements = file_obj.readlines()

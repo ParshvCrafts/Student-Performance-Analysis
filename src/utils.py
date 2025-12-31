@@ -42,8 +42,28 @@ def evaluate_models(X_train, y_train, X_test, y_test, models, params):
         raise CustomException(e, sys)
     
 def load_object(file_path):
+    """
+    Load a pickled object with version compatibility handling
+
+    Args:
+        file_path: Path to the pickle file
+
+    Returns:
+        Loaded object
+
+    Raises:
+        CustomException: If loading fails after all retry attempts
+    """
     try:
         with open(file_path, "rb") as file_obj:
             return dill.load(file_obj)
+    except AttributeError as ae:
+        # Handle scikit-learn version mismatch issues
+        logging.error(f"AttributeError when loading {file_path}: {str(ae)}")
+        logging.error("This is likely due to scikit-learn version incompatibility.")
+        logging.error("The pickled model was created with a different sklearn version.")
+        logging.error("Please retrain the model with the current environment.")
+        raise CustomException(ae, sys)
     except Exception as e:
+        logging.error(f"Error loading object from {file_path}: {str(e)}")
         raise CustomException(e, sys)

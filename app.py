@@ -15,12 +15,39 @@ app = application
 
 ## Route for a home page
 @app.route('/')
-
 def index():
     return render_template('index.html')
-    
+
+@app.route('/home')
 def home():
     return render_template('home.html')
+
+@app.route('/health')
+def health():
+    """Health check endpoint for monitoring"""
+    try:
+        # Verify critical files exist
+        import os
+        model_exists = os.path.exists('artifacts/model.pkl')
+        preprocessor_exists = os.path.exists('artifacts/preprocessor.pkl')
+
+        if model_exists and preprocessor_exists:
+            return {
+                "status": "healthy",
+                "model": "loaded",
+                "preprocessor": "loaded"
+            }, 200
+        else:
+            return {
+                "status": "unhealthy",
+                "model": "loaded" if model_exists else "missing",
+                "preprocessor": "loaded" if preprocessor_exists else "missing"
+            }, 503
+    except Exception as e:
+        return {
+            "status": "unhealthy",
+            "error": str(e)
+        }, 503
 
 @app.route('/predictdata', methods=['Get','POST'])
 
